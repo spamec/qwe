@@ -11,27 +11,32 @@ import * as L from 'leaflet';
 })
 export class ViewerComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() options: any = {};
+  @Input() options: any;
+  private _options: any;
 
   constructor() {
-    this.options = {
+    this._options = {
       layers: [
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '...'})
       ],
-      zoom: 4,
-      center: L.latLng(53.879966, 36.726909)
+      zoom: 10,
+      center: L.latLng(55.751244, 37.618423)
     };
   }
 
   ngOnInit() {
-    console.log('ngOnInit', this.options);
+    this.options = Object.assign({}, this._options, this.options);
+    console.log(this.options);
   }
 
   ngOnChanges(changes) {
-    console.log('ngOnChanges', changes.options.currentValue, changes.options.previousValue);
+    // this.options = Object.assign({}, changes.options, changes.options);
+    // this._options = this.options;
   }
 
   ngOnDestroy() {
   }
+
+
 
 }

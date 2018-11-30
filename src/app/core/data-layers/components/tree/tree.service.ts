@@ -16,7 +16,7 @@ export class TreeService {
     this._dataLayersSubscribe = dataLayersService.observableDataLayers.subscribe(data => {
       this._dataLayers = data;
       console.log('this.dataLayers', this._dataLayers);
-      this.dataLayersToGridData(this._dataLayers);
+      this.dataLayersToTreeData(this._dataLayers);
       // this.hwListService.updateHwId(options);
     }, error => {
       console.log(error);
@@ -34,7 +34,7 @@ export class TreeService {
     return this._treeDataSubject.asObservable();
   }
 
-  private __item(item) {
+  private loopItem(item) {
     const temp = {
       name: item.name || 'root',
       children: []
@@ -46,21 +46,18 @@ export class TreeService {
       });
     }
     item.group.forEach((subItem) => {
-      temp.children.unshift(this.__item(subItem));
+      temp.children.unshift(this.loopItem(subItem));
     });
 
     return temp;
   }
 
-  dataLayersToGridData(dataLayers: DataLayers) {
-    return new Promise((resolve, reject) => {
+  dataLayersToTreeData(dataLayers: DataLayers) {
       if (dataLayers.type !== 'layertree') {
         throw new Error('type \'layertree\' expected');
       }
-      this._treeData = this.__item(dataLayers.root);
+      this._treeData = this.loopItem(dataLayers.root);
       this._treeDataSubject.next(this._treeData);
-    });
-
   }
 
 }

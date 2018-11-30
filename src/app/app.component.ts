@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Viewer';
+  mapOptions = {
+    zoom: 5,
+    center: L.latLng(55.751244, 37.618423)
+  };
 }
