@@ -3,15 +3,27 @@ import {DataLayers} from './models/dataLayers';
 export const temp: DataLayers = {
   'type': 'layertree',
   'root': {
-    'group': {
+    'group': [{
       'name': 'Мозаики высокого разрешения',
       'order': 1,
-      'group': {
+      'group': [{
         'name': 'Вторая группа данных',
         'order': 1,
-        'group': {},
+        'group': [],
         'layers': []
       },
+        {
+          'name': '33333',
+          'order': 1,
+          'group': [],
+          'layers': [{
+            'name': ' Мозаика в естественных цветах (2017г)',
+            'type': 'tms',
+            'order': 1,
+            'id': 'highres_mosaics_RGB_2017',
+            'url': 'http://94.159.64.34:8001/geoserver/gwc/service/tms/1.0.0/baikal:highres_mosaics_RGB_2017@EPSG:3857@png/{z}/{x}/{y}.png'
+          }]
+        }],
       'layers': [
         {
           'name': ' Мозаика в естественных цветах (2017г)',
@@ -34,6 +46,6 @@ export const temp: DataLayers = {
           'id': 'highres_mosaics_RGB_2015',
           'url': 'http://94.159.64.34:8001/geoserver/gwc/service/tms/1.0.0/baikal:highres_mosaics_RGB_2015@EPSG:3857@png/{z}/{x}/{y}.png'
         }]
-    }
+    }]
   }
 };

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TreeService} from './tree.service';
+import {DataLayers} from '../../models/dataLayers';
 
 @Component({
   selector: 'app-core-data-layers-tree',
@@ -13,7 +14,8 @@ export class TreeComponent implements OnInit {
       name: 'root1',
       children: [
         {id: 2, name: 'child1'},
-        {id: 3, name: 'child2'}
+        {id: 3, name: 'child2'},
+        {id: 3, name: 'child3'}
       ]
     },
     {
@@ -33,11 +35,20 @@ export class TreeComponent implements OnInit {
   ];
   options = {};
 
+  private _nodes: DataLayers;
+  private _nodesSubscribe: any;
+
   constructor(private treeService: TreeService) {
 
   }
 
   ngOnInit() {
+    console.log('ngOnInit');
+
+    this._nodesSubscribe = this.treeService.observableTreeData.subscribe(data => {
+      this.nodes = data.children;
+    });
+
   }
 
 }

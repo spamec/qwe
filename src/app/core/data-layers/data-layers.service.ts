@@ -11,33 +11,40 @@ import * as fake from './test';
 export class DataLayersService {
 
   constructor() {
-    this.loadData();
-
+    this.init();
   }
 
-  loadData() {
-    // api
-    setTimeout(() => {
-      console.log(200);
-      this.dataLayers = fake.temp;
-    }, 200);
-  }
-
-  get dataLayers() {
+  get dataLayers(): DataLayers {
     return this._dataLayers;
   }
 
-  @Input('dataLayers') set dataLayers(data: any) {
+  @Input('dataLayers') set dataLayers(data: DataLayers) {
 
     this._dataLayers = data;
     this._dataLayersSubject.next(this._dataLayers);
   }
 
-  private _dataLayers: any;
-  private _dataLayersSubject = new Subject<any>();
-
-  get observableDataLayers() {
+  get observableDataLayers(): Observable<DataLayers> {
     return this._dataLayersSubject.asObservable();
+  }
+
+  private _dataLayers: DataLayers;
+  private _dataLayersSubject = new Subject<DataLayers>();
+
+
+  private init() {
+    this.loadData().then((data: DataLayers) => {
+      this.dataLayers = data;
+    });
+  }
+
+  /**
+   * обращение к апи
+   */
+  loadData(t?) {
+    return new Promise((resolve, reject) => {
+      resolve(fake.temp);
+    });
   }
 
 }
