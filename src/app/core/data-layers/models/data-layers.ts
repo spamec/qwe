@@ -1,4 +1,4 @@
-import {DataLayersGroup} from './dataLayersGroup';
+import {DataLayersGroup} from './data-layers-group';
 
 export class DataLayers {
   type: string;

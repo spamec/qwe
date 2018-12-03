@@ -1,4 +1,5 @@
-<p>
-  tree works!
-</p>
-<tree-root  [nodes]="nodes" [options]="options"></tree-root>
+<tree-root
+  [nodes]="nodes"
+  [options]="options"
+  (activate)="treeNodeActivate($event)"
+></tree-root>

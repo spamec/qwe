@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 
 import {MapModule} from './core/map/map.module';
 import {DataLayersModule} from './core/data-layers/data-layers.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {DataLayersModule} from './core/data-layers/data-layers.module';
     BrowserModule,
     MapModule.forRoot(),
     DataLayersModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

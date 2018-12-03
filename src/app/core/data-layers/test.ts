@@ -1,4 +1,4 @@
-import {DataLayers} from './models/dataLayers';
+import {DataLayers} from './models/data-layers';
 
 export const temp: DataLayers = {
   'type': 'layertree',

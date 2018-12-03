@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {DataLayersService} from '../../data-layers.service';
-import {DataLayers} from '../../models/dataLayers';
+import {DataLayers} from '../../models/data-layers';
+import {DataLayersLayer} from '../../models/data-layers-layer';
 import {Observable, Subject} from 'rxjs';
+
+import {MapService} from '../../../map/map.service';
 
 
 @Injectable({
@@ -9,13 +12,13 @@ import {Observable, Subject} from 'rxjs';
 })
 export class TreeService {
 
-  constructor(private dataLayersService: DataLayersService) {
+  constructor(private dataLayersService: DataLayersService, private mapService: MapService) {
     console.log('TreeService');
 
 
     this._dataLayersSubscribe = dataLayersService.observableDataLayers.subscribe(data => {
       this._dataLayers = data;
-      console.log('this.dataLayers', this._dataLayers);
+      // console.log('this.dataLayers', this._dataLayers);
       this.dataLayersToTreeData(this._dataLayers);
       // this.hwListService.updateHwId(options);
     }, error => {
@@ -53,11 +56,15 @@ export class TreeService {
   }
 
   dataLayersToTreeData(dataLayers: DataLayers) {
-      if (dataLayers.type !== 'layertree') {
-        throw new Error('type \'layertree\' expected');
-      }
-      this._treeData = this.loopItem(dataLayers.root);
-      this._treeDataSubject.next(this._treeData);
+    if (dataLayers.type !== 'layertree') {
+      throw new Error('type \'layertree\' expected');
+    }
+    this._treeData = this.loopItem(dataLayers.root);
+    this._treeDataSubject.next(this._treeData);
+  }
+
+  layerToMap(layer: DataLayersLayer) {
+    this.mapService.toggleLayers(layer);
   }
 
 }

@@ -1,4 +1,6 @@
 <div class="map viewer"
      leaflet
-     [leafletOptions]="options">
+     [leafletOptions]="options"
+     (leafletMapReady)="onMapReady($event)"
+     [leafletLayers]="layers">
 </div>

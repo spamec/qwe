@@ -1,8 +1,71 @@
-app-core-map-viewer{
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
+$header-height: 80px;
+$left-nav-panel-width: 80px;
+
+
+
+.header {
+  z-index: 5;
+  width: calc(100vw - #{$left-nav-panel-width});
+  height: $header-height;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+  position: relative;
+  left: $left-nav-panel-width;
+}
+
+.left-nav-panel{
+  background-color: #e8e8e8;
+  //background-color: #e8372e;
+  position: fixed;
   left: 0;
   top:0;
-  z-index: -1;
+  width: $left-nav-panel-width;
+  height: 100vh;
 }
+
+.main {
+  position: absolute;
+  display: flex;
+  flex-wrap:nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+
+  //outline: 1px solid red;
+  width: calc(100vw - #{$left-nav-panel-width});
+  height: calc(100vh - #{$header-height});
+  left: $left-nav-panel-width;
+  overflow: hidden;
+}
+
+
+.main{
+
+
+  app-core-map-viewer {
+    position: relative;
+    flex: 1 1 100%;
+    z-index: 0;
+  }
+
+  app-core-data-layers-mat-tree{
+    background-color: #000;
+    flex: 1 0 425px;
+  }
+
+  app-core-data-layers-tree {
+    position: relative;
+    flex: 1 0 425px;
+    //flex: 1 0 100px;
+    box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    z-index: 2;
+    overflow: hidden;
+    transition: flex 2s ease-out;
+  }
+
+  app-core-data-layers-tree.hide{
+    flex: 0 0 0;
+  }
+}
+

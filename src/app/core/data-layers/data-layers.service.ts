@@ -1,7 +1,7 @@
 import {Injectable, Input} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 
-import {DataLayers} from './models/dataLayers';
+import {DataLayers} from './models/data-layers';
 
 import * as fake from './test';
 

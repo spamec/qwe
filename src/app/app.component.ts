@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 })
 export class AppComponent {
   mapOptions = {
-    zoom: 5,
-    center: L.latLng(55.751244, 37.618423)
+    zoom: 7,
+    center: L.latLng(53.1736, 107.6625)
   };
 }
